@@ -1,5 +1,8 @@
+import org.jetbrains.gradle.ext.PackagePrefixContainer
+
 plugins {
     kotlin("multiplatform") version "1.6.20"
+    id("org.jetbrains.gradle.plugin.idea-ext") version "0.10"
 }
 
 group = "io.github.bcamphart"
@@ -23,35 +26,8 @@ kotlin {
 
         val jvmMain by getting
         val jvmTest by getting {
-
             dependencies {
                 implementation(kotlin("test-junit"))
-
-                implementation("io.cucumber:cucumber-java8:6.1.1")
-                implementation("io.cucumber:cucumber-junit:6.1.1")
-            }
-        }
-
-        val cucumberRuntime by configurations.creating {
-            extendsFrom(configurations.getByName("jvmTestImplementation"))
-        }
-
-        tasks.create("cucumber") {
-            group = "verification"
-            dependsOn("assemble", "jvmTestClasses")
-            tasks.check.get().dependsOn(this)
-
-            doLast {
-                javaexec {
-                    mainClass.set("io.cucumber.core.cli.Main")
-
-                    classpath = cucumberRuntime + files("build/classes/kotlin/jvm/test")
-                    args = listOf(
-                        "--plugin", "pretty",
-                        "--plugin", "html:target/cucumber-report.html",
-                        "--glue", "expansion",
-                        "src/jvmTest/resources")
-                }
             }
         }
     }
