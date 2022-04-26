@@ -29,9 +29,8 @@ class Steps {
     }
 
     @Then("a {string} message should be given")
-    fun a_message_should_be_given(string: String?) {
-        // Write code here that turns the phrase above into concrete actions
-        throw PendingException()
+    fun a_message_should_be_given(message: String) {
+        context.get().hasMessage(message)
     }
 
     @Then("the unit should not have been moved from the center of the map")

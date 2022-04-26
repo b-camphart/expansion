@@ -1,9 +1,10 @@
 package steps
 
+import fixtures.TestContext
 import io.cucumber.java.After
 import io.cucumber.java.Before
 
-val context: ThreadLocal<Int> = ThreadLocal.withInitial { 0 }
+val context: ThreadLocal<TestContext> = ThreadLocal.withInitial { TestContext() }
 
 class SetupSteps {
 
