@@ -1,6 +1,7 @@
 package fixtures
 
 import MessagePresenter
+import MoveUnit
 import UnitPositionPresenter
 
 class TestContext : MessagePresenter, UnitPositionPresenter {
@@ -23,5 +24,7 @@ class TestContext : MessagePresenter, UnitPositionPresenter {
 
     val List<List<Unit>>.center: Pair<Double, Double>
         get() = size.toDouble() / 2 to (firstOrNull()?.size?.toDouble()?.div(2) ?: 0.0)
+
+    val moveUnit = MoveUnit()
 
 }

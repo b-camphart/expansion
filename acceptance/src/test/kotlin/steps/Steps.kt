@@ -4,6 +4,7 @@ import io.cucumber.java.PendingException
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 
@@ -29,9 +30,12 @@ class Steps {
     }
 
     @When("the player moves the unit a distance of {double} at {int} degrees")
-    fun the_player_moves_the_unit_a_distance_of_at_degrees(double1: Double?, int1: Int?) {
+    fun the_player_moves_the_unit_a_distance_of_at_degrees(distance: Double, angle: Int) {
         // Write code here that turns the phrase above into concrete actions
        // throw PendingException()
+        runTest {
+            context.get().moveUnit(distance, angle.toDouble())
+        }
     }
 
     @Then("a {string} message should be given")
