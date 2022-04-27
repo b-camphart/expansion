@@ -4,39 +4,46 @@ import io.cucumber.java.PendingException
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 
 class Steps {
 
     @Given("a flat, {int} by {int} map")
     fun a_flat_by_map(int1: Int, int2: Int) {
-        throw PendingException()
+//        context.get().theMap = List(int1) { List(int2) { } }
+       // throw PendingException()
     }
 
     @Given("a unit is in the center of the map")
     fun a_unit_is_in_the_center_of_the_map() {
-        throw PendingException()
+       // throw PendingException()
+//        with(context.get()) {
+//            theUnit = UnitFixture(theMap!!.center)
+//        }
     }
 
     @Given("the unit has a maximum allowed distance of {int}")
     fun the_unit_has_a_maximum_allowed_distance_of(int1: Int?) {
-        throw PendingException()
+       // throw PendingException()
     }
 
     @When("the player moves the unit a distance of {double} at {int} degrees")
     fun the_player_moves_the_unit_a_distance_of_at_degrees(double1: Double?, int1: Int?) {
         // Write code here that turns the phrase above into concrete actions
-        throw PendingException()
+       // throw PendingException()
     }
 
     @Then("a {string} message should be given")
     fun a_message_should_be_given(message: String) {
-        context.get().hasMessage(message)
+        assertTrue(context.get().hasMessage(message))
     }
 
     @Then("the unit should not have been moved from the center of the map")
     fun the_unit_should_not_have_been_moved_from_the_center_of_the_map() {
-        // Write code here that turns the phrase above into concrete actions
-        throw PendingException()
+        with(context.get()) {
+            assertEquals(theMap!!.center, theUnit!!.position)
+        }
     }
 
     @Then("the unit should be a distance of {int} at {int} degrees from the center of the map")
