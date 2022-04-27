@@ -8,8 +8,8 @@ class TestContext : MessagePresenter, UnitPositionPresenter {
 
     private val messages = mutableListOf<String>()
 
-    override fun presentMessage(message: String) {
-        messages.add(message)
+    override fun tooFar() {
+        messages.add("TOO FAR")
     }
 
     fun hasMessage(message: String): Boolean = messages.contains(message)
@@ -25,6 +25,6 @@ class TestContext : MessagePresenter, UnitPositionPresenter {
     val List<List<Unit>>.center: Pair<Double, Double>
         get() = size.toDouble() / 2 to (firstOrNull()?.size?.toDouble()?.div(2) ?: 0.0)
 
-    val moveUnit = MoveUnit()
+    val moveUnit = MoveUnit(this)
 
 }

@@ -1,5 +1,6 @@
 package steps
 
+import fixtures.UnitFixture
 import io.cucumber.java.PendingException
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
@@ -12,16 +13,14 @@ class Steps {
 
     @Given("a flat, {int} by {int} map")
     fun a_flat_by_map(int1: Int, int2: Int) {
-//        context.get().theMap = List(int1) { List(int2) { } }
-       // throw PendingException()
+        context.get().theMap = List(int1) { List(int2) { } }
     }
 
     @Given("a unit is in the center of the map")
     fun a_unit_is_in_the_center_of_the_map() {
-       // throw PendingException()
-//        with(context.get()) {
-//            theUnit = UnitFixture(theMap!!.center)
-//        }
+        with(context.get()) {
+            theUnit = UnitFixture(theMap!!.center)
+        }
     }
 
     @Given("the unit has a maximum allowed distance of {int}")
@@ -31,8 +30,6 @@ class Steps {
 
     @When("the player moves the unit a distance of {double} at {int} degrees")
     fun the_player_moves_the_unit_a_distance_of_at_degrees(distance: Double, angle: Int) {
-        // Write code here that turns the phrase above into concrete actions
-       // throw PendingException()
         runTest {
             context.get().moveUnit(distance, angle.toDouble())
         }
@@ -48,12 +45,6 @@ class Steps {
         with(context.get()) {
             assertEquals(theMap!!.center, theUnit!!.position)
         }
-    }
-
-    @Then("the unit should be a distance of {int} at {int} degrees from the center of the map")
-    fun the_unit_should_be_a_distance_of_at_degrees_from_the_center_of_the_map(int1: Int?, int2: Int?) {
-        // Write code here that turns the phrase above into concrete actions
-        throw PendingException()
     }
 
     @When("the player moves the unit a distance of {int} at negative {int} degrees")

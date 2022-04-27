@@ -1,3 +1,3 @@
 interface MessagePresenter {
-    fun presentMessage(message: String)
+    fun tooFar()
 }
